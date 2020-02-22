@@ -30,9 +30,11 @@ def setup_event(client):
             return
     
         if message.content.startswith('$shift'):
+            print(str('send shift message: ' + MSG))
             await message.channel.send(MSG)
     
         if message.content.startswith('$help'):
+            print(str('send help message')
             await message.channel.send(HELP_MESSAGE)
     
     
@@ -40,6 +42,7 @@ def setup_event(client):
             rep = message.content
             start_pos = rep.index(' ') + 1
             msg = rep[start_pos:]
+            print(str('update shift to ' + msg)
             await message.channel.send('Shift updated to ' + msg)
 
 def main():
