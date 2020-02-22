@@ -80,7 +80,9 @@ def setup_s3_bucket():
                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
                         region_name='ap-northeast-1'
                         )
-    return s3.Bucket('ayuji-shift-bot')
+
+    BUCKET_NAME = os.environ['BUCKET_NAME']
+    return s3.Bucket(BUCKET_NAME)
 
 
 def main():
