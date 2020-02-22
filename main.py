@@ -22,7 +22,7 @@ $shift                     :シフト表示
 def setup_client():
     # herokuを使用する上でportは自由に設定することができず動的に与えられるPORTを使用する必要があるため
     PORT = os.getenv('PORT', '8080')
-    logger.info(PORT)
+    logger.info('port is ' + PORT)
     for_heroku = TCPConnector(local_addr=('0.0.0.0', PORT))
 
     return discord.Client(connector=for_heroku)
