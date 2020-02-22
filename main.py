@@ -34,16 +34,16 @@ def setup_event(client):
             await message.channel.send(MSG)
     
         if message.content.startswith('$help'):
-            print(str('send help message')
+            print(str('send help message'))
             await message.channel.send(HELP_MESSAGE)
     
     
         if client.user in message.mentions:
             rep = message.content
             start_pos = rep.index(' ') + 1
-            msg = rep[start_pos:]
-            print(str('update shift to ' + msg)
-            await message.channel.send('Shift updated to ' + msg)
+            MSG = rep[start_pos:]
+            print(str('update shift to ' + MSG))
+            await message.channel.send('Shift updated to ' + MSG)
 
 def main():
     client = setup_client()
