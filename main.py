@@ -1,6 +1,7 @@
 import discord
 import os
 import boto3
+import datetime
 from aiohttp import TCPConnector
 
 import logging
@@ -46,12 +47,19 @@ def setup_event(client, bucket):
             await message.channel.send(HELP_MESSAGE)
 
         if client.user in message.mentions:
-            rep = message.content
-            start_pos = rep.index(' ') + 1
-            MSG = rep[start_pos:]
+            MSG = build_msg(message.content)
             put_s3(bucket, 'shift.txt', MSG)
             logger.info(str('update shift to ' + MSG))
             await message.channel.send('shift updated!')
+
+def build_msg(rep):
+    start_pos = rep.index(' ') + 1
+    body = rep[start_pos:]
+    return str(body + '\n' + get_today_string())
+
+def get_today_string():
+    now = datetime.datetime.today()
+    return str('updated at ' + now.strftime("%m/%d %H:%M"))
 
 def get_s3(bucket, key):
     obj = bucket.Object(key)
